@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Вход{% endblock %}
+{%load crispy_forms_tags %} 
+
+
+
+{% block content %}
+<div class="user-form">
+    <h3 class="form-title">Вход</h3>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Имя пользователя -->
+    <div class="mb-3">
+        <label for="username">Имя пользователя<span class="required">*</span></label> 
+        <input type="text" name="username" class="form-control-custom" placeholder="Введите имя пользователя" required>
+    </div>
+
+    <!-- Пароль -->
+    <div class="mb-3">
+        <label for="password">Пароль<span class="required">*</span></label> 
+        <input type="password" name="password" class="form-control-custom" placeholder="Введите пароль" required>
+    </div>
+    <button type="submit" class="btn btn-entrance">Войти</button>
+</form>
+<p class="registration-prompt">Еще нет аккаунта? <a href="{% url 'register' %}" class="registration-link">Зарегистрируйтесь</a></p>
+</div>
+{% endblock content %}

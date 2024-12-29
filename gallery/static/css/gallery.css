@@ -1,0 +1,785 @@
+:root{
+    --acent:#6100FF;
+    --background-base:#000000;
+    --background-post:#282B33;
+}
+
+/* Обычный */
+@font-face {
+	font-family: 'FontName medium'; 
+	src: url(../fonts/TT\ Travels\ Next\ Trial\ Medium.ttf); 
+}
+ 
+/* Жирный */
+@font-face {
+	font-family: 'FontName bold'; 
+	src: url(../fonts/TT\ Travels\ Next\ Trial\ Bold.ttf); 
+}
+
+
+/* Нормальный */
+@font-face {
+	font-family: 'FontName regular'; 
+	src: url(../fonts/TT\ Travels\ Next\ Trial\ Regular.ttf); 
+}
+
+
+/* Очень жирный */
+@font-face {
+	font-family: 'FontName Extrabold'; 
+	src: url(../fonts/TT\ Travels\ Next\ Trial\ ExtraBold.ttf); 
+}
+
+html {
+    height: 100%;
+  }
+
+.open{
+    display: flex  !important;
+  }
+
+body {
+    font-family: 'FontName regular';
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+    background-color: var(--background-base);
+    color: #fff;
+  }
+
+
+
+.container {
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin-top: 35px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo a {
+    text-decoration: none;
+    font-size: 32px;
+    font-family:'FontName bold' ;
+    color: #fff;
+}
+
+.menu-content {
+    display: flex; /* Используем flexbox */
+    justify-content: center; /* Центрируем элементы по горизонтали */
+    align-items: center; /* Центрируем элементы по вертикали */
+    gap: 20px; /* Отступ между элементами */
+}
+
+
+
+
+header .login, header .share, .post-update, .user-delete-post{
+    font-family: 'FontName Extrabold';
+    font-size: 12px;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 9px;
+    text-decoration: none;
+    background-color: var(--acent);
+}
+
+header .login:hover, header .share:hover, .post-update:hover, .user-delete-post:hover {
+    background-color: rgba(123, 99, 241, 1);
+}
+
+.menu-content a:last-of-type {
+    margin-right: 0;
+}
+
+
+.edit-profile{
+    text-decoration: none;
+    font-family: 'FontName bold';
+    font-size: 12px;
+    color: #fff;
+}
+
+
+.edit-profile:hover{
+    color: rgb(255, 255, 255, 0.5);
+}
+
+
+
+/* ОСНОВНОЙ КОНТЕНТ */
+.main-content{
+    margin-top: 75px;
+}
+
+
+.post-items {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.post-item {
+    box-sizing: border-box; /* Чтобы учитывать паддинги и бордюры внутри ширины */
+    width: calc((100% / 3) - 25px); /* Ширина каждого элемента без учёта половины внешнего отступа */
+    margin-right: 25px;
+    background-color: var(--background-post);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 9px;
+}
+
+/* Для последнего элемента в строке сбрасываем правый отступ */
+.post-items .post-item:nth-child(3n) {
+    margin-right: 0;
+}
+
+.post-item-title, .post-title{
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'FontName bold';
+    display: inline-block;
+}
+
+.post-item-logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.post-item-title:hover{
+    color: var(--acent);
+    transform: scale(1.02);
+}
+
+
+/* Текст описание краткое */
+.body{
+    margin-top: 25px;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+b {
+    font-size: 12px;
+}
+
+
+
+/* ДЕТАЛЬНОЕ ПРЕДСТАВЛЕНИЕ ПОСТА detail.html*/
+.detail-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-post-heading {
+    width: 80%; /* Устанавливаем ширину блока */
+    position: relative; /* Для псевдоэлемента */
+}
+
+.detail-post-heading::after {
+    content: ""; /* Создаем пустой контент */
+    display: block; /* Делаем его блочным элементом */
+    width: 100%; /* Ширина линии */
+    height: 1px; /* Высота линии */
+    background-color: var(--background-post); /* Цвет линии */
+    margin: 16px 0; /* Отступы сверху и снизу */
+}
+
+
+
+
+/* Переход на сайт */
+.detail-post-heading a, .post-delete, .cancel, .user-form .logout{
+    text-decoration: none;
+    font-size: 12px;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 9px;
+    font-family: 'FontName bold';
+    display: block;
+    float: right;
+    border: 1px solid #fff;
+}
+
+
+.detail-post-heading a:hover, .post-delete:hover, .cancel:hover, .user-form .logout:hover{
+    background-color: rgb(255, 255, 255, 0.6);
+}
+
+/* Расположение содержимого боди */
+.detail-post-body  {
+    width: 80%; /* Ширина блока с телом поста */
+}
+
+
+p span{
+    line-height: normal;
+}
+
+
+/* Страница, где хранятся посты пользователя dashboard.html */
+/* Мои посты */
+.post-heading-user h3 {
+    text-align: center;
+    font-family: 'FontName bold';
+    margin-bottom: 32px;
+}
+
+/* Все посты */
+.user-posts, .user-action-delete{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Пост */
+.user-post{
+    width: 50%;
+    position: relative;
+    
+}
+/* После каждого поста */
+.user-post::after{
+    content: ""; /* Создаем пустой контент */
+    display: block; /* Делаем его блочным элементом */
+    width: 100%; /* Ширина линии */
+    height: 1px; /* Высота линии */
+    background-color: var(--background-post); /* Цвет линии */
+    margin: 20px 0; /* Отступы сверху и снизу */
+}
+
+
+/* Действия над статьями (удалить/редактировать) */
+.post-action {
+    margin-top: 25px;
+    text-align: right; /* Выравнивает содержимое по правому краю */
+}
+
+.action-buttons {
+    display: inline-flex; /* Располагает кнопки в линию */
+    align-items: center; /* Вертикально выравнивает кнопки */
+    gap: 15px; /* Устанавливает расстояние между кнопками */
+}
+
+.post-action a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+
+/* ФОРМЫ */
+/* Контейнеры */
+.user-form{
+    max-width: 600px;
+    margin: 56px auto 0; /* Упрощение отступов */
+    padding: 40px;
+    border-radius: 9px;
+}
+
+
+.delete-post{
+    background-color: var(--background-post);
+    border: 1px solid #fff;
+    padding: 20px;
+    border-radius: 9px;
+}
+
+.delete-post p{
+    text-align: center;
+    font-family: 'FontName medium';
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+
+.user-delete-post{
+    border: none;
+}
+
+.delete-strong{
+    font-size: 24px;
+    color: var(--acent);
+}
+
+
+/* Заголовки: Регистрация, Вход, Редактировани профиля... */
+.form-title {
+    font-family: 'FontName bold';
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 22px;
+    
+}
+
+
+
+/* Метки */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--white);
+}
+
+/* Поля ввода */
+.form-control-custom {
+    width: 100%; /* Ширина 100% */
+    padding: 12px; /* Отступы */
+    font-size: 16px; /* Размер шрифта */
+    border-radius: 5px; /* Скругление углов */
+    background-color: var(--background-base); /* Цвет фона */
+    border: 2px solid var(--background-post); /* Цвет границы */
+    color: #fff; /* Цвет текста */
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Плавный переход для границы, фона и тени */
+}
+
+/* Эффект при наведении */
+.form-control-custom:hover {
+    color: var(--white); 
+    background-color: var(--background-base); /* Цвет фона при наведении */
+}
+
+/* Эффект при фокусе */
+.form-control-custom:focus {
+    color: var(--white);
+    outline: none; /* Убираем стандартный контур */
+    background-color: #000; /* Цвет фона при фокусе */
+    box-shadow: 0 0 10px rgba(97, 0, 255, 0.9); /* Увеличенная тень для выделения */
+}
+
+
+/* Стили для поля загрузки файла */
+.form-control-custom-photo {
+    width: 100%; /* Ширина 100% */
+    font-size: 16px; /* Размер шрифта */
+    background-color: var(--background-base); /* Цвет фона */
+    color: var(--white); /* Цвет текста */
+}
+
+
+/* Стили для placeholder */
+.form-control-custom::placeholder {
+    color: #fff; /* Цвет текста placeholder */
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+
+
+
+
+/* Форма вход, переход на регистрацию */
+.registration-prompt {
+    font-size: 16px; /* Размер шрифта */
+    color: #fff; /* Цвет текста */
+    margin-top: 40px; /* Отступ сверху */
+    text-align: center;
+}
+
+.registration-link {
+    color: var(--acent); /* Цвет ссылки */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.registration-link:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+    color: rgb(255, 255, 255, 1);
+}
+
+
+/* Кнопки */
+.user-form .btn {
+    display: block;
+    width: auto;
+    /* Упрощение отступов */
+    margin: 25px auto 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    font-family: 'FontName bold';
+    background-color: var(--acent);
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.user-form .btn:hover {
+    background-color: rgba(123, 99, 241, 1);
+}
+
+
+/* ВИЗУАЛЬНЫЙ РЕДАКТОР */
+
+.ck-editor-container {
+    border: none; /* Убираем границу у контейнера редактора */
+}
+
+.ck .ck-reset .ck-editor .ck-rounded-corners {
+    border: none; /* Убираем границу у элементов с закругленными углами */
+}
+
+.ck .ck-editor__top .ck-reset_all {
+    border: none; /* Убираем границу у верхней части редактора */
+}
+
+
+form .ck-editor {
+    border: 1px solid var(--background-post) !important; /* Убираем границу у редактора */
+    border-radius: 9px;
+}
+
+form .ck-rounded-corners {
+    border: 1px solid var(--background-post) !important; /* Убираем границу у элементов с закругленными углами */
+    border: none;
+}
+
+form .ck-editor__top {
+    border: 1px solid var(--background-post) !important; /* Убираем границу у верхней части редактора */
+}
+
+/* Сама область ввода */
+.ck .ck-editor__main .ck-editor__editable{
+    background-color: var(--background-base);
+
+}
+/* Панель инструментов */
+.ck .ck-toolbar__items{
+    background-color: var(--background-base);
+}
+
+
+.ck.ck-icon.ck-icon_inherit-color, .ck.ck-icon.ck-icon_inherit-color {
+    color: #ffff !important; /* Устанавливаем цвет иконок */
+}
+
+.ck.ck-icon.ck-icon_inherit-color:hover, .ck.ck-icon.ck-icon_inherit-color:hover {
+    color: var(--background-post) !important; /* Устанавливаем цвет иконок при наведении */
+}
+
+
+.ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content{
+    border: none;
+}
+
+.ck.ck-toolbar{
+    background: none;
+}
+
+
+
+
+/* ОБРАБОТКА ФОТО ПРОФИЛЯ И ЛОГОТИПА */
+/* Стили для профиля */
+.profile-photo {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.profile-photo img, .post-author {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Стили для ссылок */
+.user, .registr {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Ошибки */
+.error-message{
+    font-size: 12px;
+    color: red; /* Добавьте стиль для сообщений об ошибках, если необходимо */
+}
+
+.required{
+    color: red;
+}
+
+
+
+/* Стилизация .burger-container */
+.burger-container {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.burger-menu {
+    display: none; /* Используем flexbox для расположения линий */
+    flex-direction: column; /* Располагаем линии вертикально */
+    justify-content: center; /* Центрируем линии по вертикали */
+    align-items: center; /* Центрируем линии по горизонтали */
+    position: relative;
+    z-index: 50;
+    width: 30px; /* Ширина бургер-меню */
+    height: 18px; /* Высота бургер-меню */
+
+}
+
+.burger-container.active {
+    background-color: var(--background-base); /* Цвет для активного состояния */
+    z-index: 100;
+}
+
+.burger-menu span {
+    height: 3px; /* Высота "полоски" бургер-меню */
+    width: 70%; /* Ширина полоски равна 70% от ширины бургер-меню */
+    background-color: #333; /* Цвет полоски */
+    transition: transform 0.3s ease; /* Плавный переход для трансформации */
+}
+
+/* Псевдоэлементы для верхней и нижней полоски */
+.burger-menu::before,
+.burger-menu::after {
+    content: ''; /* Создает пустой контент для псевдоэлементов */
+    position: absolute; /* Абсолютное позиционирование относительно родительского элемента */
+    height: 3px; /* Высота полоски */
+    width: 70%; /* Ширина полоски равна 70% от ширины бургер-меню */
+    background-color: #333; /* Цвет полоски */
+    transition: all 0.3s ease 0s;
+}
+
+.burger-menu::before {
+    top: 0; /* Псевдоэлемент перед полоской располагается вверху */
+}
+
+.burger-menu::after {
+    bottom: 0; /* Псевдоэлемент после полоски располагается внизу */
+}
+
+/* Активное состояние */
+.burger-menu.active span {
+    transform: scale(0); /* Уменьшает видимость центральной полоски до 0 (скрывает ее) */
+}
+
+.burger-menu.active::before {
+    top: 50%; /* Перемещает верхнюю полоску в центр */
+    transform: rotate(-45deg) translate(0, -75%); /* Поворачивает верхнюю полоску на 45 градусов влево */
+    background-color: #fff; /* Цвет верхней полоски при открытом меню */
+}
+
+.burger-menu.active::after {
+    bottom: 50%; /* Перемещает нижнюю полоску в центр */
+    transform: rotate(45deg) translate(0, 75%); /* Поворачивает нижнюю полоску на 45 градусов вправо */
+    background-color: #fff; /* Цвет нижней полоски при открытом меню */
+}
+
+.burger-container.active .logo a {
+    color: #000; /* Цвет логотипа при открытом меню (белый) */
+}
+
+/* -------------------------------------------------------------------------------------------- */
+
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
+@media  (orientation: portrait) and (max-device-width: 412px) and (min-device-height: 915px){
+
+.container {
+  max-width: 412px;
+  margin: 0 auto;
+}
+
+.logo a {
+    font-size: 18px;
+}
+
+.burger-container{
+    display: flex;
+}
+
+
+.burger-menu{
+    display: flex;
+}
+
+
+
+/* Фото профиля, настройки и подедиться сервисом */
+.menu-content{
+    display: none;
+    flex-direction: column; /* Располагает дочерние элементы вертикально */
+    justify-content: flex-start; /* Выравнивает элементы по верхнему краю */
+    align-items: flex-start; /* Растягивает элементы по ширине родителя */
+    position: fixed;
+    height: 100vh; /* Высота меню равна 100% от высоты окна */
+    width: 100vw; /* Ширина меню равна 100% от ширины окна */
+    animation: burgerAnimation 0.4s; /* Применяет анимацию при открытии меню */
+    overflow-y: auto; /* Позволяет прокручивать содержимое меню по вертикали */
+    background-color: #fff; /* Белый фон */
+    padding: 50px;
+    padding-top: 150px;
+    z-index: 50;
+    inset: 0;
+}
+
+
+.edit-profile{
+    text-decoration: none;
+    font-family: 'FontName bold';
+    font-size: 12px;
+    color: #6C6C6C;
+}
+
+
+
+/* ОСНОВНОЙ КОНТЕНТ */
+.main-content{
+    margin-top: 75px;
+}
+
+
+.post-items {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.post-item {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+/* Для последнего элемента в строке сбрасываем правый отступ */
+.post-item:last-of-type{
+    margin-bottom: 0;
+}
+
+
+/* ДЕТАЛЬНОЕ ПРЕДСТАВЛЕНИЕ ПОСТА detail.html*/
+.detail-post-heading {
+    width: 100%; /* Устанавливаем ширину блока */
+}
+
+
+
+/* Расположение содержимого боди */
+.detail-post-body  {
+    width: 100%; /* Ширина блока с телом поста */
+}
+
+
+
+/* Страница, где хранятся посты пользователя dashboard.html */
+/* Пост */
+.user-post{
+    width: 100%; 
+}
+
+
+
+/* ФОРМЫ */
+/* Контейнеры */
+.user-form{
+    max-width: 100%;
+    margin:0; /* Упрощение отступов */
+    padding: 0;
+}
+
+
+
+
+
+
+/* Метки */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--white);
+}
+
+/* Поля ввода */
+.form-control-custom {
+    width: 100%; /* Ширина 100% */
+    padding: 12px; /* Отступы */
+    font-size: 16px; /* Размер шрифта */
+    border-radius: 5px; /* Скругление углов */
+    background-color: var(--background-base); /* Цвет фона */
+    border: 2px solid var(--background-post); /* Цвет границы */
+    color: #fff; /* Цвет текста */
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Плавный переход для границы, фона и тени */
+}
+
+/* Эффект при наведении */
+.form-control-custom:hover {
+    color: var(--white); 
+    background-color: var(--background-base); /* Цвет фона при наведении */
+}
+
+/* Эффект при фокусе */
+.form-control-custom:focus {
+    color: var(--white);
+    outline: none; /* Убираем стандартный контур */
+    background-color: #000; /* Цвет фона при фокусе */
+    box-shadow: 0 0 10px rgba(97, 0, 255, 0.9); /* Увеличенная тень для выделения */
+}
+
+
+/* Стили для поля загрузки файла */
+.form-control-custom-photo {
+    width: 100%; /* Ширина 100% */
+    font-size: 16px; /* Размер шрифта */
+    background-color: var(--background-base); /* Цвет фона */
+    color: var(--white); /* Цвет текста */
+}
+
+
+/* Стили для placeholder */
+.form-control-custom::placeholder {
+    color: #fff; /* Цвет текста placeholder */
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+
+
+
+
+/* Форма вход, переход на регистрацию */
+.registration-prompt {
+    font-size: 14px; /* Размер шрифта */
+}
+
+@keyframes burgerAnimation{
+    from {opacity: 0;};
+    to {opacity: 1;}
+
+}
+
+}

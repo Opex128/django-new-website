@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% block title %}Удаление статьи {{object.title}}{% endblock title%}
+{% load static %}
+
+
+<!-- Код для отображения постов -->
+{% block header %}
+<!-- Проверяем аутеницифоран ли пользователь -->
+ {% if request.user.is_authenticated %}
+ <!-- Отображаем кнопку поделится идеей -->
+ <a class="share" href="{% url 'create_post' %}">Поделиться сервисом</a>
+ <!-- Отображаем иконку, котоаря перенапрвялет пользователя на обнволенеи своего аккаунта -->
+ <a href="{% url 'edit' %}" class="edit-profile">Настройки</a>
+<!-- Показываем картинку профиля пользователя -->
+{% if request.user.profile and request.user.profile.photo %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{{ request.user.profile.photo.url }}" alt="profile-photo" class="profile-photo"></a>
+{% else %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{% static 'img/profile-replace.png' %}" alt="profile-photo" class="profile-photo"></a>
+{% endif %}
+
+
+{%else %}
+    <a class="login" href="{% url 'login' %}">Вход</a>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div class="user-action-delete">
+    <div class="delete-post">
+        <form method="post">
+            {% csrf_token %} 
+            <p>Вы действительно хотите удалить <b class="delete-strong">{{ object.title }}</b>?</p> 
+            <div class="post-action">
+                <div class="action-buttons">
+                    <input type="submit" class="user-delete-post" value="Удалить">
+                    <a href="{% url 'post_list' %}" class="cancel">Отмена</a> 
+                </div>
+            </div>
+        </form>  
+    </div>
+
+</div>
+{% endblock content %}

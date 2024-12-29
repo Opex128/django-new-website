@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Редактирование профиля {{ username }}{% endblock %}
+{% load static %}
+{%load crispy_forms_tags %} 
+
+
+
+
+<!-- Код для отображения постов -->
+{% block header %}
+<!-- Проверяем аутеницифоран ли пользователь -->
+ {% if request.user.is_authenticated %}
+ <!-- Отображаем кнопку поделится идеей -->
+ <a class="share" href="{% url 'create_post' %}">Поделиться сервисом</a>
+ <!-- Отображаем иконку, котоаря перенапрвялет пользователя на обнволенеи своего аккаунта -->
+ <a href="{% url 'edit' %}" class="edit-profile">Настройки</a>
+<!-- Показываем картинку профиля пользователя -->
+{% if request.user.profile and request.user.profile.photo %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{{ request.user.profile.photo.url }}" alt="profile-photo" class="profile-photo"></a>
+{% else %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{% static 'img/profile-replace.png' %}" alt="profile-photo" class="profile-photo"></a>
+{% endif %}
+
+
+{%else %}
+    <a class="login" href="{% url 'login' %}">Вход</a>
+{% endif %}
+
+{% endblock %}
+
+
+
+
+{% block content %}
+<div class="user-form">
+    <h3 class="form-title">Редактирование профиля</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Имя пользователя -->
+        <div class="mb-3">
+            <label for="username">Имя пользователя</label>
+            <input type="text" name="username" class="form-control-custom" id="username" value="{{ user_form.username.value }}" placeholder="Введите имя пользователя">
+        </div>
+        
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control-custom" id="email" value="{{ user_form.email.value }}" placeholder="Введите ваш email">
+        </div>
+        
+        <!-- Фото профиля -->
+        <div class="mb-3">
+            <label for="formFile">Фото профиля</label>
+            <input class="form-control-custom-photo" type="file" id="formFile" name="photo">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Обновить</button>
+    </form>
+    
+    <a href="{% url 'logout' %}" class="logout">Выйти</a>
+</div>
+{% endblock content %}

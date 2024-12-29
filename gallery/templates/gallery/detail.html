@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+<!-- Код для отображения постов -->
+{% block header %}
+<!-- Проверяем аутеницифоран ли пользователь -->
+ {% if request.user.is_authenticated %}
+ <!-- Отображаем кнопку поделится идеей -->
+ <a class="share" href="{% url 'create_post' %}">Поделиться сервисом</a>
+ <!-- Отображаем иконку, котоаря перенапрвялет пользователя на обнволенеи своего аккаунта -->
+ <a href="{% url 'edit' %}" class="edit-profile">Настройки</a>
+<!-- Показываем картинку профиля пользователя -->
+{% if request.user.profile and request.user.profile.photo %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{{ request.user.profile.photo.url }}" alt="profile-photo" class="profile-photo"></a>
+{% else %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{% static 'img/profile-replace.png' %}" alt="profile-photo" class="profile-photo"></a>
+{% endif %}
+
+
+{%else %}
+    <a class="login" href="{% url 'login' %}">Вход</a>
+{% endif %}
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="detail-post">
+    <div class="detail-post-heading">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="photo-services" class="post-item-logo">
+            {% else %}
+                <img src="{% static 'img/design-icon.png' %}" alt="photo-services" class="post-item-logo">
+            {% endif %}
+            <span class="post-title">{{ post.title }}</span> <!-- Исправлено с </p> на </span> -->
+            <a href="{{post.link}}">Перейти на сайт</a>
+    </div>
+
+    <div class="detail-post-body">{{post.body|safe}}</div>
+</div>
+{% endblock content %}

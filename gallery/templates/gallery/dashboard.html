@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Профиль{{ object.user.username }}{% endblock %}
+
+<!-- Код для отображения постов -->
+{% block header %}
+<!-- Проверяем аутеницифоран ли пользователь -->
+ {% if request.user.is_authenticated %}
+ <!-- Отображаем кнопку поделится идеей -->
+ <a class="share" href="{% url 'create_post' %}">Поделиться сервисом</a>
+ <!-- Отображаем иконку, котоаря перенапрвялет пользователя на обнволенеи своего аккаунта -->
+ <a href="{% url 'edit' %}" class="edit-profile">Настройки</a>
+<!-- Показываем картинку профиля пользователя -->
+{% if request.user.profile and request.user.profile.photo %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{{ request.user.profile.photo.url }}" alt="profile-photo" class="profile-photo"></a>
+{% else %}
+<a href="{% url 'dashboard' request.user.username %}"><img src="{% static 'img/profile-replace.png' %}" alt="profile-photo" class="profile-photo" ></a>
+{% endif %}
+
+
+{%else %}
+    <a class="login" href="{% url 'login' %}">Вход</a>
+{% endif %}
+
+{% endblock %}
+
+
+
+<!-- BODY -->
+{% block content %}
+    <div class="post-heading-user">
+        <h3>Мои посты</h3>
+    </div>
+    <!-- Статьи пользователя -->
+        <div class="user-posts">
+            {% for post in posts %}
+                <div class="user-post">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="Фото поста" width="100" height="100" class="post-item-logo">
+                    {% endif %}
+                    <a href="{{post.get_absolute_url}}" class = "post-item-title">{{ post.title }}</a>
+                    <p class="body">{{post.preview|safe}}</p>
+
+                    <div class="post-action">
+                        <div class="action-buttons">
+                            <a href="{% url 'delete' post.slug %}" class="post-delete">Удалить</a>
+                            <a href="{% url 'update_post' post.slug %}" class="post-update">Редактировать</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>У вас нет постов.</p> <!-- Сообщение, если постов нет -->
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
